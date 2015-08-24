@@ -1,0 +1,42 @@
+#!/usr/bin/python
+import re
+from itertools import groupby
+import sys
+
+
+def viterbi_segment(text):
+    probs, lasts = [1.0], [0]
+    for i in range(1, len(text) + 1):
+        prob_k, k = max((probs[j] * word_prob(text[j:i]), j)
+                        for j in range(max(0, i - max_word_length), i))
+        probs.append(prob_k)
+        lasts.append(k)
+    words = []
+    i = len(text)
+    while 0 < i:
+        words.append(text[lasts[i]:i])
+        i = lasts[i]
+    words.reverse()
+    return words, probs[-1]
+
+def word_prob(word): 
+    return dictionary.get(word, 0) / total
+
+def words(text): 
+    return re.findall('[a-z]+', text.lower()) 
+
+
+dictionary = dict((w, len(list(ws)))
+                  for w, ws in groupby(sorted(words(open('../big.txt').read()))))
+max_word_length = max(map(len, dictionary))
+total = float(sum(dictionary.values()))
+
+
+if __name__ == '__main__':
+    text = sys.argv[1]
+    words,probs =  viterbi_segment(text)
+    print words
+    print probs
+
+
+
