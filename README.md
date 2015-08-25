@@ -26,4 +26,4 @@ Then you can just walk through the notebook running each snippet.
 ##Improvements
 Some words are synonyms in final list and they all should be clubbed together. But finding synonyms for each word in a corpus is expensive. The only option i found is Wordnet in NLTK but it also give erraneous results due to multiple meanings of same word. Further things are complicated, since synonyms of phrase is not possible to compute by just lookup. 
 
-If the desired output is flexible and actual topics are to be derived, then a topic is an idea which is a distribution over words. 
+If the desired output is flexible and actual topics are to be derived, then a topic is an idea which is a distribution over words. In this direction, we can use Topic Modelling to derive topics in unsupervised manner. An illustration is shown with Non-Negative Matrix Factorization in last part. This approach indeed gives better results. 
